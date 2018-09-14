@@ -1,0 +1,2 @@
+select lstg_format_name, sum(price) as GMV from kylin_sales where lstg_format_name='FP-GTC' group by lstg_format_name;
+select lstg_format_name, sum(price) as GMV from kylin_sales group by lstg_format_name;
