@@ -27,9 +27,12 @@ sqoop import --connect jdbc:mysql://192.168.56.104:3306/test?useSSL=false --user
 --fields-terminated-by '\001' \
 ```
 # hive to mysql
+
+【根据hive建mysql表】
+
 hive to mysql不支持自动创建mysql表，可以用脚本hivetomysql.py根据hive生成mysql表先建表之后再进行导入
 
-【方法1--将hdfs文件导入mysql】
+【导入数据方法1--将hdfs文件导入mysql】
 ```shell
 sqoop export   \
 --connect jdbc:mysql://10.1.2.50:3306/yanhuaok  \
@@ -39,7 +42,7 @@ sqoop export   \
 --export-dir hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/test_account \
 --driver com.mysql.jdbc.Driver 
 ```
-【方法2--将hive表导入mysql】
+【导入数据方法2--将hive表导入mysql】
 ```shell
 sqoop export   \
 --connect jdbc:mysql://10.1.40.102:3306/longtest \
