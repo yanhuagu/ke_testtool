@@ -102,3 +102,5 @@ CREATE TABLE `sqoop_test` (
   `year_test` year(4) DEFAULT NULL
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 ```
+# 遇到的坑
+Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test
