@@ -31,8 +31,8 @@ sqoop import   \
 # hive to mysql
 
 【根据hive建mysql表】
-由于sqoop的hive to mysql不支持自动创建mysql表，这里补充hivetomysql.py根据hive生成mysql表，先建表之后再使用sqoop进行导入
 
+由于sqoop的hive to mysql不支持自动创建mysql表，这里补充hivetomysql.py根据hive生成mysql表，先建表之后再使用sqoop进行导入
 根据hive表字段的类型和mysql类型对比，得到如下对应关系，根据此对应进行mysql表创建时的类型转换（可能不全，可以根究需要在脚本的elif中添加即可）
 
 ```shell
@@ -73,7 +73,3 @@ sqoop export   \
 # 测试
 用hive to mysql建表脚本配合sqoop的hive to mysql
 测试了tpch和learnkylin的几张表hive to mysql后，mysql数据和hive的一致。
-
-
---driver com.mysql.jdbc.Driver 
---driver com.mysql.jdbc.Driver 
