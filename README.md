@@ -173,3 +173,4 @@ other        LONGTEXT
 ```
 将此HIVE表通过py脚本生成mysql建表语句，创建mysql表sqoop_test3，再将sqoop_test3导入到hive中。
 对比sqoop_test3和sqoop_test2的表结构完全一致。
+另外测试了tpch的几张表hive to mysql后，mysql数据和hive的一致。
