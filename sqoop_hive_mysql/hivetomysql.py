@@ -40,10 +40,14 @@ def mysql_table_sql(hivehost,database,tablename):
                             mysql_sql_columns = mysql_sql_columns+"`{0}` BIGINT(20) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["int"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` INT(11) DEFAULT NULL,".format(i[0])+'\n'
+                        elif i[1] in ["smallint"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` SMALLINT(6) DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["double"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` DOUBLE DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["tinyint"]:
                             mysql_sql_columns = mysql_sql_columns + "`{0}` TINYINT(4) DEFAULT NULL,".format(i[0]) + '\n'
+                        elif i[1] in ["date"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` DATE DEFAULT NULL,".format(i[0]) + '\n'
                         else :
                             mysql_sql_columns = mysql_sql_columns+"`{0}` LONGTEXT,".format(i[0])+'\n'
             except Exception as e:
@@ -55,4 +59,4 @@ def mysql_table_sql(hivehost,database,tablename):
     mysql_sql = mysql_sql_head+mysql_sql_columns[:-2]+mysql_sql_tail
     return mysql_sql
 
-print mysql_table_sql('10.1.2.108','tpch_flat_orc_10','customer')
+print mysql_table_sql('10.1.2.108','default','kylin_cal_dt')
