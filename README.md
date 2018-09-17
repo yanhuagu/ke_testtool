@@ -103,12 +103,11 @@ CREATE TABLE `sqoop_test` (
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 ```
 报错如下：
-Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test,tinyblob_test,varbinary_test,实际导数据如果遇到这些类型，需要转换成下面支持类型中的接近类型了。
+Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test,tinyblob_test,varbinary_test,bit_test实际导数据如果遇到这些类型，需要转换成下面支持类型中的接近类型了。
 这里测试先删除上述提到的字段:
 ```shell
 CREATE TABLE `sqoop_test` (
   `bigint_test` bigint(20) DEFAULT NULL,
-  `bit_test` bit(1) DEFAULT NULL,
   `char_test` char(0) DEFAULT NULL,
   `date_test` date DEFAULT NULL,
   `datetime_test` datetime DEFAULT NULL,
@@ -138,7 +137,6 @@ CREATE TABLE `sqoop_test` (
 hive> desc sqoop_test2;
 OK
 bigint_test         	bigint
-bit_test            	boolean
 char_test           	string
 date_test           	string
 datetime_test       	string
