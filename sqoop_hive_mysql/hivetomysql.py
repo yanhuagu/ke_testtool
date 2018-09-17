@@ -50,6 +50,7 @@ def mysql_table_sql(hivehost,database,tablename):
                             mysql_sql_columns = mysql_sql_columns + "`{0}` {1} DEFAULT NULL,".format(i[0],i[1]) + '\n'
                         else :
                             mysql_sql_columns = mysql_sql_columns+"`{0}` LONGTEXT,".format(i[0])+'\n'
+                    conn.close()
             except Exception as e:
                 print(e)
 
