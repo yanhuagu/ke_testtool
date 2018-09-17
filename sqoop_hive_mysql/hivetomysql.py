@@ -36,6 +36,10 @@ def mysql_table_sql(hivehost,database,tablename):
                             mysql_sql_columns = mysql_sql_columns+"`{0}` BIGINT(20) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["int"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` INT(11) DEFAULT NULL,".format(i[0])+'\n'
+                        elif i[1] in ["integer"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` INT(11) DEFAULT NULL,".format(i[0]) + '\n'
+                        elif i[1] in ["float"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` FLOAT DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["smallint"]:
                             mysql_sql_columns = mysql_sql_columns + "`{0}` SMALLINT(6) DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["double"]:
