@@ -42,8 +42,6 @@ def mysql_table_sql(tablename):
                             mysql_sql_columns = mysql_sql_columns+"`{0}` INT(11) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["double"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` DOUBLE DEFAULT NULL,".format(i[0])+'\n'
-                        elif i[1] in ["boolean"]:
-                            mysql_sql_columns = mysql_sql_columns + "`{0}` BIT(1) DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["tinyint"]:
                             mysql_sql_columns = mysql_sql_columns + "`{0}` TINYINT(4) DEFAULT NULL,".format(i[0]) + '\n'
                         else :
