@@ -17,7 +17,6 @@ sqoop import   \
 ```shell
 上述语句
 ```
-sqoop import --connect jdbc:mysql://192.168.56.104:3306/test?useSSL=false --username root --password 123456 --table t1 --hive-import --hive-table test.mysql_t1
 
 覆盖数据
 ```shell
