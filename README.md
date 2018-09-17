@@ -23,7 +23,7 @@ sqoop import   \
 --hive-overwrite 
 ```
 
-存在异常数据的时候
+自定义hive field terminated
 ```shell
 --fields-terminated-by '\001' \
 ```
