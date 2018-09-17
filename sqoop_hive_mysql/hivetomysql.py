@@ -6,7 +6,7 @@ import pyhs2
 
 
 
-def mysql_table_sql(tablename):
+def mysql_table_sql(hivehost,database,tablename):
 
     mysql_sql_head = '''
     CREATE TABLE `{0}` (
@@ -18,11 +18,11 @@ def mysql_table_sql(tablename):
 
     mysql_sql_columns = ''
 
-    h_hivehost = '10.1.2.108'
+    h_hivehost = hivehost
     h_port = 10000
-    h_user = 'root'
-    h_password = 'root123'
-    h_database = 'testgu'
+    h_user = 'user'
+    h_password = 'password'
+    h_database = database
     h_table = tablename
 
     try:
@@ -42,8 +42,6 @@ def mysql_table_sql(tablename):
                             mysql_sql_columns = mysql_sql_columns+"`{0}` INT(11) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["double"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` DOUBLE DEFAULT NULL,".format(i[0])+'\n'
-                        elif i[1] in ["boolean"]:
-                            mysql_sql_columns = mysql_sql_columns + "`{0}` BIT(1) DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["tinyint"]:
                             mysql_sql_columns = mysql_sql_columns + "`{0}` TINYINT(4) DEFAULT NULL,".format(i[0]) + '\n'
                         else :
@@ -57,4 +55,4 @@ def mysql_table_sql(tablename):
     mysql_sql = mysql_sql_head+mysql_sql_columns[:-2]+mysql_sql_tail
     return mysql_sql
 
-print mysql_table_sql('sqoop_test2')
+print mysql_table_sql('10.1.2.108','tpch_flat_orc_10','customer')
