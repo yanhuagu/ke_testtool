@@ -39,7 +39,9 @@ sqoop import   \
 【hive】                【mysql】
 bigint                  BIGINT(20)
 int                     INT(11) 
+integer                 INT(11)
 double                  DOUBLE
+float                   FLOAT
 tinyint                 TINYINT(4)
 smallint                SMALLINT(6)
 date                    DATE
