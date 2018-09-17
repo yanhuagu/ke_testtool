@@ -31,6 +31,7 @@ sqoop import   \
 # hive to mysql
 
 【根据hive建mysql表】
+
 根据hive表字段的类型和mysql类型对比，得到如下对应关系，根据此对应进行mysql表创建时的类型转换（可能不全，可以根究需要在脚本的elif中添加即可）
 
 ```shell
