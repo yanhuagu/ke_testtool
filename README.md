@@ -102,9 +102,10 @@ CREATE TABLE `sqoop_test` (
   `year_test` year(4) DEFAULT NULL
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 ```
-报错如下：
-Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test,tinyblob_test,varbinary_test,bit_test实际导数据如果遇到这些类型，需要转换成下面支持类型中的接近类型了。
-这里测试先删除上述提到的字段:
+将此表导入到hive中，报错如下：
+Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test,tinyblob_test,varbinary_test,bit_test
+实际导数据如果遇到这些类型，需要转换成下面支持类型中的接近类型了。
+这里测试先删除上述提到的字段后，得到如下建表:
 ```shell
 CREATE TABLE `sqoop_test` (
   `bigint_test` bigint(20) DEFAULT NULL,
@@ -132,7 +133,7 @@ CREATE TABLE `sqoop_test` (
   `year_test` year(4) DEFAULT NULL
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 ```
-导入hive之后，可以看到mysql和hive类型之间的转换关系
+此mysql表可正常导入hive，desc hive table，看到mysql和hive类型之间的转换关系
 ```shell
 hive> desc sqoop_test2;
 OK
@@ -171,6 +172,4 @@ boolean      BIT(1)
 tinyint      TINYINT(4)
 other        LONGTEXT
 ```
-将此HIVE表通过py脚本生成mysql建表语句，创建mysql表sqoop_test3，再将sqoop_test3导入到hive中。
-对比sqoop_test3和sqoop_test2的表结构完全一致。
-另外测试了tpch的几张表hive to mysql后，mysql数据和hive的一致。
+用hive to mysql建表脚本配合sqoop的hive to mysql，测试了tpch的几张表hive to mysql后，mysql数据和hive的一致。
