@@ -21,7 +21,7 @@ def mysql_table_sql(tablename):
     h_hivehost = '10.1.2.108'
     h_port = 10000
     h_user = 'root'
-    h_password = 'root12uu3'
+    h_password = 'root123'
     h_database = 'testgu'
     h_table = tablename
 
@@ -39,9 +39,13 @@ def mysql_table_sql(tablename):
                         if i[1] in ["bigint"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` BIGINT(20) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["int"]:
-                            mysql_sql_columns = mysql_sql_columns+"`{0}` INTEGER(11) DEFAULT NULL,".format(i[0])+'\n'
+                            mysql_sql_columns = mysql_sql_columns+"`{0}` INT(11) DEFAULT NULL,".format(i[0])+'\n'
                         elif i[1] in ["double"]:
                             mysql_sql_columns = mysql_sql_columns+"`{0}` DOUBLE DEFAULT NULL,".format(i[0])+'\n'
+                        elif i[1] in ["boolean"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` BIT(1) DEFAULT NULL,".format(i[0]) + '\n'
+                        elif i[1] in ["tinyint"]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` TINYINT(4) DEFAULT NULL,".format(i[0]) + '\n'
                         else :
                             mysql_sql_columns = mysql_sql_columns+"`{0}` LONGTEXT,".format(i[0])+'\n'
 
@@ -53,4 +57,4 @@ def mysql_table_sql(tablename):
     mysql_sql = mysql_sql_head+mysql_sql_columns[:-2]+mysql_sql_tail
     return mysql_sql
 
-print mysql_table_sql('result')
+print mysql_table_sql('sqoop_test2')
