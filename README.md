@@ -48,12 +48,12 @@ sqoop export   \
 【导入数据方法2--将hive表导入mysql】
 ```shell
 sqoop export   \
---connect jdbc:mysql://10.1.2.50:3306/yanhuaok \
+--connect jdbc:mysql://10.1.40.102:3306/longtest \
 --username root \
 --password root123 \
---table KYLIN_CAL_DT  \
---hcatalog-database testgu  \
---hcatalog-table KYLIN_CAL_DT \
+--table customer  \
+--hcatalog-database tpch_flat_orc_10  \
+--hcatalog-table customer \
 --driver com.mysql.jdbc.Driver 
 ```
 
