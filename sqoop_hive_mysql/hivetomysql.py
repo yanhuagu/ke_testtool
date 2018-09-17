@@ -46,6 +46,8 @@ def mysql_table_sql(hivehost,database,tablename):
                             mysql_sql_columns = mysql_sql_columns + "`{0}` DATE DEFAULT NULL,".format(i[0]) + '\n'
                         elif i[1] in ["timestamp"]:
                             mysql_sql_columns = mysql_sql_columns + "`{0}` TIMESTAMP NULL DEFAULT NULL,".format(i[0]) + '\n'
+                        elif "decimal" in i[1]:
+                            mysql_sql_columns = mysql_sql_columns + "`{0}` {1} DEFAULT NULL,".format(i[0],i[1]) + '\n'
                         else :
                             mysql_sql_columns = mysql_sql_columns+"`{0}` LONGTEXT,".format(i[0])+'\n'
             except Exception as e:
@@ -57,4 +59,4 @@ def mysql_table_sql(hivehost,database,tablename):
     mysql_sql = mysql_sql_head+mysql_sql_columns[:-2]+mysql_sql_tail
     return mysql_sql
 
-print mysql_table_sql('10.1.2.108','default','test_order')
+print mysql_table_sql('10.1.2.108','default','test_kylin_fact')
