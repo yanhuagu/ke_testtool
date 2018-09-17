@@ -48,7 +48,7 @@ decimal(n1,n2)          decimal(n1,n2)
 other                   LONGTEXT
 ```
 符上mysql各字段类型建表语句：
--- ----------------------------
+```shell
 DROP TABLE IF EXISTS `sqoop_test`;
 CREATE TABLE `sqoop_test` (
   `bigint_test` bigint(20) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `sqoop_test` (
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
+```
 
 【导入数据方法1--将hdfs文件导入mysql】
 ```shell
