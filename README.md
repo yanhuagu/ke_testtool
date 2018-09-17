@@ -102,5 +102,76 @@ CREATE TABLE `sqoop_test` (
   `year_test` year(4) DEFAULT NULL
 ) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
 ```
-# 遇到的坑
-Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test
+报错如下：
+Hive does not support the SQL type for column binary_test,blob_test,geometry_test,geometrycollection_test,linestring_test,linestring_test,longblob_test,mediumblob_test,  multilinestring_test,multipoint_test,multipolygon_test,point_test,tinyblob_test,varbinary_test,
+删除上述提到的字段:
+```shell
+CREATE TABLE `sqoop_test` (
+  `bigint_test` bigint(20) DEFAULT NULL,
+  `bit_test` bit(1) DEFAULT NULL,
+  `char_test` char(0) DEFAULT NULL,
+  `date_test` date DEFAULT NULL,
+  `datetime_test` datetime DEFAULT NULL,
+  `decimal_test` decimal(10,0) DEFAULT NULL,
+  `double_test` double DEFAULT NULL,
+  `enum_test` enum('0','1','2','3') NOT NULL DEFAULT '0',
+  `float_test` float DEFAULT NULL,
+  `int_test` int(11) DEFAULT NULL,
+  `integer_test` int(11) DEFAULT NULL,
+  `json_test` json DEFAULT NULL,
+  `longtext_test` longtext,
+  `mediumint_test` mediumint(9) DEFAULT NULL,
+  `mediumtext_test` mediumtext,
+  `numeric_test` decimal(10,0) DEFAULT NULL,
+  `smallint_test` smallint(6) DEFAULT NULL,
+  `text_test` text,
+  `time_test` time DEFAULT NULL,
+  `timestamp_test` timestamp NULL DEFAULT NULL,
+  `tinyint_test` tinyint(4) DEFAULT NULL,
+  `tinytext_test` tinytext,
+  `varchar_test` varchar(0) DEFAULT NULL,
+  `year_test` year(4) DEFAULT NULL
+) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+```
+导入hive之后，可以看到mysql和hive类型之间的转换关系
+```shell
+hive> desc sqoop_test2;
+OK
+bigint_test         	bigint
+bit_test            	boolean
+char_test           	string
+date_test           	string
+datetime_test       	string
+decimal_test        	double
+double_test         	double
+enum_test           	string
+float_test          	double
+int_test            	int
+integer_test        	int
+json_test           	string
+longtext_test       	string
+mediumint_test      	int
+mediumtext_test     	string
+numeric_test        	double
+smallint_test       	int
+text_test           	string
+time_test           	string
+timestamp_test      	string
+tinyint_test        	tinyint
+tinytext_test       	string
+varchar_test        	string
+year_test           	string
+Time taken: 0.553 seconds, Fetched: 24 row(s)
+```
+反推根据hive生成mysql的规则，取相同类型中对应的mysql中范围最大的类型作为hive to mysql的建表语句转化规则：
+```shell
+hive         mysql
+bigint       BIGINT(20)
+int          INT(11) 
+double       DOUBLE
+boolean      BIT(1)
+tinyint      TINYINT(4)
+other        LONGTEXT
+```
+将此HIVE表通过py脚本生成mysql建表语句，创建mysql表sqoop_test3，再将sqoop_test3导入到hive中。
+对比sqoop_test3和sqoop_test2的表结构完全一致。
