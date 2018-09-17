@@ -46,7 +46,6 @@ def mysql_table_sql(hivehost,database,tablename):
                             mysql_sql_columns = mysql_sql_columns + "`{0}` TINYINT(4) DEFAULT NULL,".format(i[0]) + '\n'
                         else :
                             mysql_sql_columns = mysql_sql_columns+"`{0}` LONGTEXT,".format(i[0])+'\n'
-
             except:
                 print('程序异常!')
     finally:
